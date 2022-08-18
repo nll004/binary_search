@@ -3,9 +3,12 @@ function findFloor(numArray, val) {
   let right = numArray.length -1;
   let mid = Math.floor((numArray.length - 1)/2);
 
-  while (left < right){
-    if (numArray[mid] === val && numArray[mid -1] !== val){
-        console.log('Floored val',numArray[mid -1])
+  if (numArray[right] < val){
+    return numArray[right]
+  }
+
+  while (left !== right - 1){
+    if (numArray[mid] >= val && numArray[mid -1] < val){
         return numArray[mid -1]
     }
     else if(numArray[mid] < val){
@@ -16,12 +19,11 @@ function findFloor(numArray, val) {
         right = mid;
         mid = Math.floor((left + right)/2)
     }
-    console.log('Val', numArray[mid], "Index:", left, mid, right )
   }
-  console.log('Floored val not found')
-
   return -1
 }
-findFloor([1,2,3,4,5,6,7,8], 10)
+// findFloor([1,2,3,4,5,6,7,8], 10)
+// findFloor([1,2,3,4,5,6,7,8], 4)
+// findFloor([1,2,3,4,5,6,7,8], 2)
 
 module.exports = findFloor
